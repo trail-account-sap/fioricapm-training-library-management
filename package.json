@@ -1,0 +1,68 @@
+{
+  "name": "LibraryMgnt",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10",
+    "@sap/xsenv": "^6.2.2",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/cds-dk": "^10"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "admin": {
+            "password": "admin",
+            "roles": [
+              "Admin"
+            ]
+          },
+          "viewer": {
+            "password": "viewer",
+            "roles": [
+              "User"
+            ]
+          },
+          "logged-user": {
+            "password": "viewer"
+          }
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "[hybrid]": {
+        "db": "sqlite",
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "admin": {
+              "roles": [
+                "Admin"
+              ]
+            },
+            "viewer": {
+              "roles": [
+                "User"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@baseUrl = http://localhost:4004/odata/v4/library
+@admin = YWRtaW46YWRtaW4=
+@viewer = dmlld2VyOnZpZXdlcg==
+@wViewer = dmlld2VyOnZpZXdlcjE=
+@logged-user = bG9nZ2VkLXVzZXI6dmlld2Vy
+###
+GET {{baseUrl}}/Books
+Authorization: Basic {{viewer}}
+
+###DELETE Book
+POST {{baseUrl}}/deleteBook(book_id=1001)
+Authorization: Basic {{admin}}
+Content-Type: application/json
+
+{
+    "book_id" : 1001    
+}
+
+### Create a Book
+POST {{baseUrl}}/Books
+Authorization: Basic {{admin}}
+Content-Type: application/json
+
+{
+      "book_id": 1001,
+      "isbn": "9788185986170",
+      "name": "Dummy Book",
+      "author_ID": "33333333-3333-3333-3333-333333333333",
+      "stock": 120
+}
